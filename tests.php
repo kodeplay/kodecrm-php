@@ -1,6 +1,8 @@
 <?php
 
 require 'chatwidget.php';
+require 'feed.php';
+
 
 class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
 
@@ -41,5 +43,78 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
         $expected .= "}) (window, document);";
         
         $this->assertEquals($snippet, $expected);
+    }
+
+    public function test_kodecrm_feed_create() {
+        $feedarr = array(
+            'title' => 'A',
+            'link' => 'B',
+            'item' => array(
+                array(
+                    'title' => 'C',
+                    'brand' => 'D',
+                    'description' => 'E',
+                    'pid' => 'F',
+                    'link' => 'G',
+                    'image_link' => 'H',
+                    'price' => 'I',
+                    'currency' => 'J',
+                    'availability' => 'K',
+                    'category' => array(
+                        'L',
+                        'M',
+                        'N'
+                    )
+                ),
+                array(
+                    'title' => 'O',
+                    'brand' => 'P',
+                    'description' => 'Q',
+                    'pid' => 'R',
+                    'link' => 'S',
+                    'image_link' => 'T',
+                    'price' => 'U',
+                    'currency' => 'V',
+                    'availability' => 'W',
+                    'category' => array(
+                        'X',
+                        'Y'                
+                    )
+                )
+            )
+        );
+        $feed = kodecrm_feed_create($feedarr);
+        $xml = '<?xml version="1.0" encoding="utf-8"?>';
+        $xml .= '<channel>';
+        $xml .= '  <title>A</title>';
+        $xml .= '  <link>B</link>';
+        $xml .= '  <item>';
+        $xml .= '    <title>C</title>';
+        $xml .= '    <brand>D</brand>';
+        $xml .= '    <description>E</description>';
+        $xml .= '    <pid>F</pid>';
+        $xml .= '    <link>G</link>';
+        $xml .= '    <image_link>H</image_link>';
+        $xml .= '    <price>I</price>';
+        $xml .= '    <currency>J</currency>';
+        $xml .= '    <availability>K</availability>';
+        $xml .= '    <category>L</category>';
+        $xml .= '    <category>M</category>';
+        $xml .= '    <category>N</category>';
+        $xml .= '  </item>';
+        $xml .= '  <item>';
+        $xml .= '    <title>O</title>';
+        $xml .= '    <brand>P</brand>';
+        $xml .= '    <description>Q</description>';
+        $xml .= '    <pid>R</pid>';
+        $xml .= '    <link>S</link>';
+        $xml .= '    <image_link>T</image_link>';
+        $xml .= '    <price>U</price>';
+        $xml .= '    <currency>V</currency>';
+        $xml .= '    <availability>W</availability>';
+        $xml .= '    <category>X</category>';
+        $xml .= '    <category>Y</category>';
+        $xml .= '  </item>';
+        $xml .= '</channel>';
     }
 }
