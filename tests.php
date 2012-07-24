@@ -84,8 +84,9 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
             )
         );
         $feed = kodecrm_feed_create($feedarr);
+        
         $xml = '<?xml version="1.0" encoding="utf-8"?>';
-        $xml .= '<channel>';
+        $xml .= '<rss version="2.0"><channel>';
         $xml .= '  <title>A</title>';
         $xml .= '  <link>B</link>';
         $xml .= '  <item>';
@@ -115,6 +116,15 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
         $xml .= '    <category>X</category>';
         $xml .= '    <category>Y</category>';
         $xml .= '  </item>';
-        $xml .= '</channel>';
+        $xml .= '</channel></rss>';
+        
+        $expected = new DOMDocument;
+        $expected->loadXML($xml);
+        
+        $actual = new DOMDocument;
+        $actual->loadXML($feed);
+
+        $this->assertEqualXMLStructure($expected->firstChild, $actual->firstChild);
+        
     }
 }
