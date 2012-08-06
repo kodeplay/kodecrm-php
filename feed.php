@@ -57,8 +57,8 @@ function kodecrm_feed_create($feedarr) {
     $dom->fromMixed($feedarr);
     $dom->formatOutput = true;
     $feed = $dom->saveXML();
-    $feed = str_replace('<channel>','<rss version="2.0"><channel>', $feed);
-    $feed = str_replace('</channel>','</channel></rss>', $feed);
-    return $feed;
+    $feed = str_replace('<channel>', '<rss version="2.0"><channel>', $feed);
+    $feed = str_replace('</channel>', '</channel></rss>', $feed);
+    return $feed; 
 }
 
