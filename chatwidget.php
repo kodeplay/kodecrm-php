@@ -6,7 +6,7 @@
  *
  * @param String $appid The KodeCRM appid
  * @param String $custom_settings An array of settings
- *   Example: $custom_settings = 'color:#000;text:Chat with us;bg:0000099'
+ *   Example: $custom_settings = 'color:#000;text:Chat with us;bg:#000099'
  */
 function kodecrm_chatwidget_render($appid, $custom_settings) {
     $settings = kodecrm_chatwidget_settings($custom_settings);
