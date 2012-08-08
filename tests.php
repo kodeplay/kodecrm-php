@@ -31,6 +31,7 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
         
         $expected = "var _kcrm = {};";
         $expected .= "_kcrm['app_id'] = '$appid';";
+        $expected .= "_kcrm['iframe'] = true;";
         $expected .= "_kcrm['cs'] = {};";
         $expected .= "_kcrm['cs']['color'] = '#000';";
         $expected .= "_kcrm['cs']['text'] = 'Chat with us';";
@@ -42,6 +43,21 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
         $expected .= "    d.body.appendChild(script);";
         $expected .= "}) (window, document);";
         
+        $this->assertEquals($snippet, $expected);
+
+        $snippet = kodecrm_chatwidget_render($appid, '', false);
+
+        $expected = "var _kcrm = {};";
+        $expected .= "_kcrm['app_id'] = '$appid';";
+        $expected .= "_kcrm['iframe'] = false;";
+        $expected .= "_kcrm['cs'] = {};";
+        $expected .= "(function (w, d, undefined) {";
+        $expected .= "    var script = document.createElement(\"script\");";
+        $expected .= "    script.type = \"text/javascript\";";
+        $expected .= "    script.src = \"http://kodecrm.com/static/javascript/widget.js\";";
+        $expected .= "    d.body.appendChild(script);";
+        $expected .= "}) (window, document);";
+
         $this->assertEquals($snippet, $expected);
     }
 
