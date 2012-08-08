@@ -35,6 +35,7 @@ function kodecrm_chatwidget_settings($custom_settings) {
     $settings = array();
     $parts = array_map('trim', explode(';', $custom_settings));
     foreach ($parts as $part) {
+        if (!$part) continue;
         list($k, $v) = array_map('trim', explode(':', $part));
         $settings[$k] = $v;
     }
