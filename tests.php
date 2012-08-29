@@ -37,10 +37,12 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
         $expected .= "_kcrm['cs']['text'] = 'Chat with us';";
         $expected .= "_kcrm['cs']['bg'] = '#000099';";
         $expected .= "(function (w, d, undefined) {";
-        $expected .= "    var script = document.createElement(\"script\");";
-        $expected .= "    script.type = \"text/javascript\";";
-        $expected .= "    script.src = \"http://kodecrm.com/static/javascript/widget.js\";";
-        $expected .= "    d.body.appendChild(script);";
+        $expected .= "    var k = document.createElement(\"script\"),";
+        $expected .= "    r = document.getElementsByTagName('script')[0],";
+        $expected .= "    p = ('https:' == document.location.protocol ? 'https://' : 'http://');";
+        $expected .= "    k.type = \"text/javascript\";";
+        $expected .= "    k.src =  p + 'kodecrm.com/static/javascript/widget.js';";
+        $expected .= "    r.parentNode.appendChild(k);";
         $expected .= "}) (window, document);";
         
         $this->assertEquals($snippet, $expected);
@@ -52,10 +54,12 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
         $expected .= "_kcrm['iframe'] = false;";
         $expected .= "_kcrm['cs'] = {};";
         $expected .= "(function (w, d, undefined) {";
-        $expected .= "    var script = document.createElement(\"script\");";
-        $expected .= "    script.type = \"text/javascript\";";
-        $expected .= "    script.src = \"http://kodecrm.com/static/javascript/widget.js\";";
-        $expected .= "    d.body.appendChild(script);";
+        $expected .= "    var k = document.createElement(\"script\"),";
+        $expected .= "    r = document.getElementsByTagName('script')[0],";
+        $expected .= "    p = ('https:' == document.location.protocol ? 'https://' : 'http://');";
+        $expected .= "    k.type = \"text/javascript\";";
+        $expected .= "    k.src =  p + 'kodecrm.com/static/javascript/widget.js';";
+        $expected .= "    r.parentNode.appendChild(k);";
         $expected .= "}) (window, document);";
 
         $this->assertEquals($snippet, $expected);
