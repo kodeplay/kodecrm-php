@@ -22,6 +22,10 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
             'text' => 'Chat with us',
             'bg' => '#000099',
         ));
+
+        $custom = '';
+        $settings = kodecrm_chatwidget_settings($custom);
+        $this->assertEquals($settings, array());
     }
 
     public function test_kodecrm_chatwidget_render() {
