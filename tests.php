@@ -30,16 +30,10 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
 
     public function test_kodecrm_chatwidget_render() {
         $appid = '1234567890ABCDEFGHIJ';
-        $custom = 'color:#000; text:Chat with us; bg:#000099 ';
-        $snippet = kodecrm_chatwidget_render($appid, $custom);
+        $snippet = kodecrm_chatwidget_render($appid);
         
         $expected = "var _kcrm = {};";
         $expected .= "_kcrm['app_id'] = '$appid';";
-        $expected .= "_kcrm['iframe'] = true;";
-        $expected .= "_kcrm['cs'] = {};";
-        $expected .= "_kcrm['cs']['color'] = '#000';";
-        $expected .= "_kcrm['cs']['text'] = 'Chat with us';";
-        $expected .= "_kcrm['cs']['bg'] = '#000099';";
         $expected .= "(function (w, d, undefined) {";
         $expected .= "    var k = document.createElement(\"script\"),";
         $expected .= "    r = document.getElementsByTagName('script')[0],";
@@ -49,23 +43,6 @@ class KodeCRM_PHP_Test extends PHPUnit_Framework_TestCase {
         $expected .= "    r.parentNode.appendChild(k);";
         $expected .= "}) (window, document);";
         
-        $this->assertEquals($snippet, $expected);
-
-        $snippet = kodecrm_chatwidget_render($appid, '', false);
-
-        $expected = "var _kcrm = {};";
-        $expected .= "_kcrm['app_id'] = '$appid';";
-        $expected .= "_kcrm['iframe'] = false;";
-        $expected .= "_kcrm['cs'] = {};";
-        $expected .= "(function (w, d, undefined) {";
-        $expected .= "    var k = document.createElement(\"script\"),";
-        $expected .= "    r = document.getElementsByTagName('script')[0],";
-        $expected .= "    p = ('https:' == document.location.protocol ? 'https://' : 'http://');";
-        $expected .= "    k.type = \"text/javascript\";";
-        $expected .= "    k.src =  p + 'kodecrm.com/static/javascript/widget.js';";
-        $expected .= "    r.parentNode.appendChild(k);";
-        $expected .= "}) (window, document);";
-
         $this->assertEquals($snippet, $expected);
     }
 

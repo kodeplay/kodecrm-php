@@ -8,17 +8,9 @@
  * @param String $custom_settings An array of settings
  *   Example: $custom_settings = 'color:#000;text:Chat with us;bg:#000099'
  */
-function kodecrm_chatwidget_render($appid, $custom_settings, $iframe=true) {
-    $settings = kodecrm_chatwidget_settings($custom_settings);
+function kodecrm_chatwidget_render($appid) {
     $snippet = "var _kcrm = {};";
     $snippet .= "_kcrm['app_id'] = '$appid';";
-    $snippet .= sprintf("_kcrm['iframe'] = %s;", $iframe ? 'true' : 'false');
-    $snippet .= "_kcrm['cs'] = {};";
-    if ($settings) {
-        foreach ($settings as $k=>$v) {
-            $snippet .= "_kcrm['cs']['$k'] = '$v';";
-        }
-    }
     $snippet .= "(function (w, d, undefined) {";
     $snippet .= "    var k = document.createElement(\"script\"),";
     $snippet .= "    r = document.getElementsByTagName('script')[0],";
