@@ -78,5 +78,6 @@ Note: If you haven't yet added the javascript snippet to your website
 then please so that the chat widget appears on it.
 
 For any queries or difficulties, please send an email to
-sales@kodeplay.com or info@kodeplay.com
+sales@kodeplay.com, info@kodeplay.com or create an issue here on
+github.
 
